@@ -13,6 +13,12 @@
 - 食物資料（food）的新增、查詢、修改、刪除（CRUD）
 - 自動產生的 API 文件（`/docs`）
 
+## API 文件截圖
+
+![ColoCare API 文件](docs/fastAPI.png)
+![ColoCare API 文件](docs/fastAPI-2.png)
+![ColoCare API 文件](docs/fastAPI-3.png)
+
 ## 安裝與啟動
 
 ```bash
