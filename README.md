@@ -36,3 +36,25 @@ uvicorn app.main:app --reload
 ## 作者
 
 Roux
+
+## 使用 Docker 啟動
+
+需要先安裝 Docker Desktop（Windows 請開啟 WSL 2 整合）。
+
+```bash
+docker compose up --build
+```
+
+啟動後：
+
+- API 文件：http://localhost:8000/docs
+- 資料庫：PostgreSQL 16（容器內服務名稱 `db`，資料存在 `pgdata` volume）
+
+背景執行與停止：
+
+```bash
+docker compose up -d
+docker compose down
+```
+
+資料表會在 API 啟動時由 `Base.metadata.create_all` 自動建立。
