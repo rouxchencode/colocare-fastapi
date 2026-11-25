@@ -12,6 +12,11 @@ def list_foods(db: Session = Depends(get_db)):
     return db.query(models.Food).all()
 
 
+@router.get("/search", response_model=list[schemas.FoodResponse])
+def search_foods(keyword: str, db: Session = Depends(get_db)):
+    return db.query(models.Food).filter(models.Food.food_name.ilike(f"%{keyword}%")).all()
+
+
 @router.get("/{food_id}", response_model=schemas.FoodResponse)
 def get_food(food_id: int, db: Session = Depends(get_db)):
     food = db.get(models.Food, food_id)
@@ -22,6 +27,7 @@ def get_food(food_id: int, db: Session = Depends(get_db)):
 
 @router.post("/", response_model=schemas.FoodResponse, status_code=201)
 def create_food(data: schemas.FoodCreate, db: Session = Depends(get_db)):
+    print(data)
     food = models.Food(**data.model_dump())
     db.add(food)
     db.commit()
@@ -48,3 +54,6 @@ def delete_food(food_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Food not found")
     db.delete(food)
     db.commit()
+
+
+
