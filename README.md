@@ -1,5 +1,7 @@
 # ColoCare FastAPI
 
+![Tests](https://github.com/rouxchencode/colocare-fastapi/actions/workflows/test.yml/badge.svg)
+
 大腸癌飲食管理系統的後端 API，使用 FastAPI + PostgreSQL 重新實作（原版為 Laravel + MySQL）。
 
 ## 技術
@@ -7,6 +9,7 @@
 - Python、FastAPI
 - PostgreSQL
 - SQLAlchemy（ORM）、Pydantic（資料驗證）
+- pytest、GitHub Actions（測試與 CI）
 
 ## 功能
 
@@ -33,10 +36,6 @@ uvicorn app.main:app --reload
 
 啟動後開啟 http://127.0.0.1:8000/docs 查看 API 文件。
 
-## 作者
-
-Roux
-
 ## 使用 Docker 啟動
 
 需要先安裝 Docker Desktop（Windows 請開啟 WSL 2 整合）。
@@ -58,3 +57,18 @@ docker compose down
 ```
 
 資料表會在 API 啟動時由 `Base.metadata.create_all` 自動建立。
+
+## Testing
+
+- 測試工具：pytest + FastAPI TestClient
+- 執行方式：
+
+```bash
+pytest
+```
+
+- CI：使用 GitHub Actions，每次 push 自動執行測試，並以 PostgreSQL service container 作為測試資料庫
+
+## 作者
+
+Roux
